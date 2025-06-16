@@ -1,17 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
+const userController = require("../controllers/user.controller");
+
 // Example POST route
-router.post("/user", (req, res) => {
+router.post("/api/user", (req, res) => {
   // logic to create user
   res.status(201).json({ message: "User created!" });
 });
 
-router.get("/user/:userId", (req, res) => {
-  const userId = req?.params?.userId || "";
-  // logic to get user
-  res.status(200).json({ message: "called user", userId });
-});
+router.get("/api/user/:userId", userController.getUserById);
+router.get("/api/users", userController.getAllUsers);
 
 // Export router
 module.exports = router;
